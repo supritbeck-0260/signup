@@ -1,3 +1,8 @@
+//Signup.jsx is a main componet. Import is as componet wherever it is required.
+//Make sure you have material UI install. Run below command to install Material UI
+//npm install @material-ui/core
+//npm install @material-ui/icons
+
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';

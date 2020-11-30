@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
@@ -17,12 +18,13 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const Gender = ()=>{
+const Gender = (props)=>{
     const classes = useStyles();
-    const [age, setAge] = useState('');
+    const [gender, setGender] = useState('');
 
     const handleChange = (event) => {
-      setAge(event.target.value);
+      setGender(event.target.value);
+      props.setData('gender',event.target.value);
     };
     return(
         <>
@@ -31,7 +33,7 @@ const Gender = ()=>{
             <Select
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
-            value={age}
+            value={gender}
             onChange={handleChange}
             label="Age"
             >

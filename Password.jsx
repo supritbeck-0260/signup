@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
+import Input from '@material-ui/core/Input';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -14,18 +15,17 @@ const useStyles = makeStyles((theme) => ({
         margin:'6px auto'
     },
 }));
-const Password = () =>{
+const Password = (props) =>{
     const classes = useStyles();
+    // console.log(props);
     const [values, setValues] = useState({
-        amount: '',
         password: '',
-        weight: '',
-        weightRange: '',
         showPassword: false,
       });
     
       const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
+        props.setData(props.type=='p'?'password':'cpassword',event.target.value);
       };
     
       const handleClickShowPassword = () => {
@@ -38,12 +38,13 @@ const Password = () =>{
     return(
         <>
         <FormControl className={classes.root} variant="outlined" >
-            <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+    <InputLabel htmlFor="outlined-adornment-password">{props.type=='p'?'Password':'Confirm Password'}</InputLabel>
                 <OutlinedInput
                     id="outlined-adornment-password"
                     type={values.showPassword ? 'text' : 'password'}
                     value={values.password}
                     onChange={handleChange('password')}
+                    onBlur={props.validateFun}
                     endAdornment={
                     <InputAdornment position="end">
                         <IconButton
